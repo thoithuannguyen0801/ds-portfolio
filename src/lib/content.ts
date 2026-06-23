@@ -2,9 +2,8 @@
  * =============================================================================
  *  SITE CONTENT — single source of truth
  * =============================================================================
- *  Edit everything about the site from this one file. All values below are
- *  realistic PLACEHOLDERS — replace them with your real information.
- *  (Search for "TODO" to find the things most likely to need changing.)
+ *  Edit everything about the site from this one file.
+ *  Look for "TODO" markers for things to update later (links, deploy URL, etc.).
  * =============================================================================
  */
 
@@ -17,18 +16,19 @@ export type IconName =
   | "scholar"
   | "globe";
 
-export type ProjectCategory =
-  | "Machine Learning"
-  | "Deep Learning"
-  | "NLP"
-  | "Data Viz"
-  | "Analytics";
+export type ProjectCategory = "Machine Learning" | "Analytics" | "Data Viz";
+
+export type SkillCategory =
+  | "Languages"
+  | "ML / AI"
+  | "Data & Viz"
+  | "Tools & Productivity";
 
 export interface SocialLink {
   label: string;
   href: string;
   icon: IconName;
-  /** Shown as the handle/preview text, e.g. "@thuannguyen" */
+  /** Shown as the handle/preview text, e.g. "in/thoi-thuan-nguyen" */
   handle?: string;
 }
 
@@ -36,7 +36,7 @@ export interface Skill {
   name: string;
   /** 0–100 proficiency, used by the skill bars */
   level: number;
-  category: "Languages" | "ML / AI" | "Data & Viz" | "Tools & Cloud";
+  category: SkillCategory;
 }
 
 export interface RadarAxis {
@@ -78,7 +78,6 @@ export interface Stat {
 
 export interface MonthlyActivity {
   month: string;
-  /** e.g. number of commits / notebooks / study hours */
   value: number;
 }
 
@@ -87,20 +86,17 @@ export interface MonthlyActivity {
 /* -------------------------------------------------------------------------- */
 
 export const profile = {
-  name: "Thuan Nguyen", // TODO: your full name
-  firstName: "Thuan",
-  role: "Data Science Student",
-  // A short, punchy one-liner for the hero section.
-  tagline: "Turning messy data into clear, honest decisions.",
-  // 1–2 sentence summary used under the hero + in metadata.
+  name: "Tony Nguyen",
+  firstName: "Tony",
+  role: "Business Analytics & Data Science Student",
+  tagline: "Turning data into clear, useful insights.",
   summary:
-    "Final-year Data Science student passionate about machine learning, statistics, and data storytelling. I build models and dashboards that turn raw numbers into decisions people can act on.",
-  location: "Ho Chi Minh City, Vietnam",
-  availability: "Open to internships & new-grad roles",
-  email: "thuan.nguyen@example.com", // TODO: real email
-  // Optional: a real photo at /public/avatar.jpg → set to "/avatar.jpg"
+    "Business Analytics & Data Science student at the University of Sydney (graduating 2027) with hands-on experience turning data into clear, useful insights. Comfortable using Python and Excel to collect, clean and analyse data, and Microsoft Office Specialist (Excel) certified. A diligent, detail-oriented team player looking to apply analytical and problem-solving skills in a professional setting.",
+  location: "Sydney, NSW, Australia",
+  availability: "Open to data & analytics internships",
+  email: "thoithuannguyen0801@gmail.com",
   avatar: null as string | null,
-  resumeUrl: "/resume.pdf", // replace public/resume.pdf with your CV
+  resumeUrl: "/resume.pdf",
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -114,24 +110,14 @@ export const nav: { label: string; href: string }[] = [
   { label: "Contact", href: "/contact" },
 ];
 
+// Only REAL links are live. Phone number from the CV is intentionally kept off
+// the public site.
 export const socials: SocialLink[] = [
   {
-    label: "GitHub",
-    href: "https://github.com/your-username", // TODO
-    icon: "github",
-    handle: "@your-username",
-  },
-  {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/your-handle", // TODO
+    href: "https://www.linkedin.com/in/thoi-thuan-nguyen-539307319/",
     icon: "linkedin",
-    handle: "in/your-handle",
-  },
-  {
-    label: "Kaggle",
-    href: "https://kaggle.com/your-handle", // TODO
-    icon: "kaggle",
-    handle: "@your-handle",
+    handle: "in/thoi-thuan-nguyen",
   },
   {
     label: "Email",
@@ -139,6 +125,20 @@ export const socials: SocialLink[] = [
     icon: "mail",
     handle: profile.email,
   },
+  // TODO: Tony doesn't have public GitHub/Kaggle yet. Uncomment + add real URLs
+  // when available (icons already supported by <SocialIcon />):
+  // {
+  //   label: "GitHub",
+  //   href: "https://github.com/<username>",
+  //   icon: "github",
+  //   handle: "@<username>",
+  // },
+  // {
+  //   label: "Kaggle",
+  //   href: "https://kaggle.com/<username>",
+  //   icon: "kaggle",
+  //   handle: "@<username>",
+  // },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -146,31 +146,31 @@ export const socials: SocialLink[] = [
 /* -------------------------------------------------------------------------- */
 
 export const stats: Stat[] = [
-  { label: "Projects shipped", value: "12+" },
-  { label: "Kaggle medals", value: "3" },
-  { label: "Models in production", value: "4" },
-  { label: "Years coding", value: "4" },
+  { label: "Academic WAM", value: "76.1" },
+  { label: "Data projects", value: "3" },
+  { label: "MOS certified", value: "Excel" },
+  { label: "Graduating", value: "2027" },
 ];
 
 export const highlights: { title: string; description: string; icon: string }[] =
   [
     {
+      icon: "database",
+      title: "Data Analytics",
+      description:
+        "Collecting, cleaning, and analysing data with Python and Excel to surface clear, useful insights.",
+    },
+    {
       icon: "brain",
       title: "Machine Learning",
       description:
-        "From classic models to deep learning — building, tuning, and evaluating models that generalize.",
+        "Hands-on with clustering, PCA, and classification to segment customers and find patterns.",
     },
     {
       icon: "chart",
       title: "Data Storytelling",
       description:
-        "Clear, interactive dashboards and visualizations that make insights obvious to any audience.",
-    },
-    {
-      icon: "database",
-      title: "Data Engineering",
-      description:
-        "Reliable pipelines: ingesting, cleaning, and shaping messy data into analysis-ready datasets.",
+        "Turning analysis into dashboards, charts, and reports anyone can read.",
     },
   ];
 
@@ -179,38 +179,41 @@ export const highlights: { title: string; description: string; icon: string }[] 
 /* -------------------------------------------------------------------------- */
 
 export const skills: Skill[] = [
-  { name: "Python", level: 92, category: "Languages" },
-  { name: "SQL", level: 85, category: "Languages" },
-  { name: "R", level: 62, category: "Languages" },
-  { name: "TypeScript", level: 55, category: "Languages" },
+  { name: "Python", level: 82, category: "Languages" },
+  { name: "SQL", level: 75, category: "Languages" },
+  { name: "VBA", level: 68, category: "Languages" },
 
-  { name: "scikit-learn", level: 88, category: "ML / AI" },
-  { name: "PyTorch", level: 74, category: "ML / AI" },
-  { name: "TensorFlow / Keras", level: 70, category: "ML / AI" },
-  { name: "XGBoost", level: 80, category: "ML / AI" },
+  { name: "scikit-learn", level: 75, category: "ML / AI" },
+  { name: "K-Means Clustering", level: 75, category: "ML / AI" },
+  { name: "PCA", level: 72, category: "ML / AI" },
+  { name: "Classification", level: 70, category: "ML / AI" },
 
-  { name: "Pandas / NumPy", level: 93, category: "Data & Viz" },
-  { name: "Matplotlib / Seaborn", level: 86, category: "Data & Viz" },
-  { name: "Plotly", level: 72, category: "Data & Viz" },
-  { name: "Tableau / Power BI", level: 68, category: "Data & Viz" },
+  { name: "Pandas / NumPy", level: 85, category: "Data & Viz" },
+  { name: "Data Cleaning & Wrangling", level: 88, category: "Data & Viz" },
+  { name: "Excel (PivotTables, Power Query)", level: 90, category: "Data & Viz" },
+  { name: "Power BI", level: 72, category: "Data & Viz" },
+  { name: "Data Visualisation", level: 80, category: "Data & Viz" },
 
-  { name: "Git / GitHub", level: 84, category: "Tools & Cloud" },
-  { name: "Docker", level: 60, category: "Tools & Cloud" },
-  { name: "AWS / GCP", level: 55, category: "Tools & Cloud" },
-  { name: "Jupyter / Colab", level: 90, category: "Tools & Cloud" },
+  { name: "Excel — MOS Certified", level: 92, category: "Tools & Productivity" },
+  { name: "Word / PowerPoint — MOS", level: 85, category: "Tools & Productivity" },
+  { name: "REST APIs", level: 65, category: "Tools & Productivity" },
+  { name: "Jupyter / Colab", level: 78, category: "Tools & Productivity" },
 ];
 
 /** Used by the radar chart on the About page. */
 export const skillRadar: RadarAxis[] = [
-  { axis: "Programming", value: 90 },
-  { axis: "Statistics", value: 82 },
-  { axis: "Machine Learning", value: 85 },
-  { axis: "Data Viz", value: 80 },
-  { axis: "Data Wrangling", value: 92 },
-  { axis: "Communication", value: 75 },
+  { axis: "Programming", value: 75 },
+  { axis: "Statistics", value: 78 },
+  { axis: "Machine Learning", value: 70 },
+  { axis: "Data Viz", value: 82 },
+  { axis: "Data Wrangling", value: 88 },
+  { axis: "Communication", value: 80 },
 ];
 
-/** Used by the activity bar chart (e.g. commits / notebooks per month). */
+/**
+ * ILLUSTRATIVE sample data — Tony has no real monthly metric tracked.
+ * Charts using this are labelled "illustrative" in the UI.
+ */
 export const activity: MonthlyActivity[] = [
   { month: "Jan", value: 18 },
   { month: "Feb", value: 24 },
@@ -231,179 +234,106 @@ export const activity: MonthlyActivity[] = [
 /* -------------------------------------------------------------------------- */
 
 export const aboutParagraphs: string[] = [
-  "I'm a final-year Data Science student who loves the moment a dataset starts to tell a story. My favorite work sits at the intersection of rigorous statistics, practical machine learning, and clear communication.",
-  "Over the last few years I've built end-to-end projects: scraping and cleaning data, training and validating models, and shipping the results as dashboards or small apps. I care a lot about reproducibility, honest evaluation, and explaining trade-offs in plain language.",
-  "Outside of coursework you'll find me competing on Kaggle, writing up notebooks, and exploring open datasets about cities, climate, and sports.",
+  "I'm a Business Analytics & Data Science student at the University of Sydney (graduating 2027) who enjoys the moment a messy dataset starts to tell a clear story. My favourite work sits where statistics, practical analytics, and communication meet.",
+  "I've built end-to-end projects — from cleaning survey and geospatial data in Python to customer segmentation with K-Means and PCA — and I care about accuracy, attention to detail, and explaining results in plain language.",
+  "I'm Microsoft Office Specialist (Excel) certified and comfortable across Python, SQL, Excel and Power BI. I'm currently looking for analytics internships where I can keep learning and contribute.",
 ];
 
 export const education: TimelineItem[] = [
   {
-    period: "2022 — 2026",
-    title: "B.Sc. in Data Science",
-    org: "University of Science",
-    location: "Ho Chi Minh City",
+    period: "2025 — 2027 (expected)",
+    title: "Bachelor of Commerce — Business Analytics & Data Science",
+    org: "The University of Sydney",
+    location: "Sydney, NSW",
     description:
-      "Relevant coursework: Machine Learning, Statistical Inference, Linear Algebra, Databases, Big Data, and Data Visualization. GPA 3.7/4.0.",
+      "WAM 76.1 / 100 (Distinction average). Relevant coursework: Data Science (DATA1002, DATA2001), Business Analytics, Statistics.",
     highlights: [
-      "Teaching assistant for Intro to Statistics (2 semesters)",
-      "Led a 4-person capstone on demand forecasting",
+      "Sydney International Student Award (merit-based)",
+      "Hands-on data science units: DATA1002, DATA2001",
     ],
   },
 ];
 
 export const experience: TimelineItem[] = [
   {
-    period: "Summer 2025",
-    title: "Data Science Intern",
-    org: "Acme Analytics",
-    location: "Remote",
+    period: "Dec 2024 — Present",
+    title: "Sales & Operations Assistant",
+    org: "Aurum Perfume",
+    location: "Hanoi, Vietnam",
     description:
-      "Built churn and propensity models feeding a marketing dashboard used by the growth team.",
+      "Sales and operations support with an analytics and reporting focus.",
     highlights: [
-      "Improved churn model AUC from 0.84 → 0.91",
-      "Automated a weekly reporting pipeline with Python + Airflow",
+      "Recorded and maintained daily sales and cash-flow data in Excel (PivotTables, Power Query), keeping records accurate and up to date.",
+      "Built Excel reports and charts to track sales trends and make figures easier for the team to read.",
+      "Collected and cleaned customer feedback and sales data with careful attention to detail.",
+      "Supported supplier and stock tracking with teammates for day-to-day reporting.",
     ],
-  },
-  {
-    period: "2024 — Present",
-    title: "Kaggle Competitor",
-    org: "Self-directed",
-    location: "Online",
-    description:
-      "Regularly compete in tabular and computer-vision competitions, focusing on robust validation and ensembling.",
-    highlights: ["3 medals across tabular & CV competitions"],
   },
 ];
 
 /* -------------------------------------------------------------------------- */
 /*  Projects                                                                    */
 /* -------------------------------------------------------------------------- */
+// TODO: Tony can add `links: { repo, demo, report }` to any project once the
+// notebooks/dashboards are published — the buttons render automatically.
 
 export const projects: Project[] = [
   {
-    slug: "customer-churn-prediction",
-    title: "Customer Churn Prediction",
+    slug: "credit-card-customer-segmentation",
+    title: "Credit Card Customer Segmentation",
     summary:
-      "Gradient-boosted model that flags at-risk subscribers two months early.",
+      "Unsupervised segmentation of ~9k cardholders into actionable groups.",
     description:
-      "End-to-end churn pipeline on a telecom dataset: feature engineering, class-imbalance handling with SMOTE, and an XGBoost model with SHAP explainability. Packaged as a small FastAPI service.",
+      "Analysed 8,950 cardholders in Python (Pandas, scikit-learn) using K-Means and PCA to surface three distinct customer segments (high-value, at-risk, low-engagement), then translated them into three practical retention strategies and presented the findings to mentors.",
     category: "Machine Learning",
-    tags: ["XGBoost", "SHAP", "FastAPI", "Imbalanced data"],
-    year: 2025,
+    tags: ["Python", "Pandas", "scikit-learn", "K-Means", "PCA"],
+    year: 2024,
     featured: true,
     metrics: [
-      { label: "ROC-AUC", value: "0.91" },
-      { label: "Recall", value: "0.83" },
-      { label: "Features", value: "47" },
+      { label: "Cardholders", value: "8,950" },
+      { label: "Segments", value: "3" },
+      { label: "Strategies", value: "3" },
     ],
-    links: {
-      repo: "https://github.com/your-username/churn-prediction",
-      report: "https://github.com/your-username/churn-prediction#readme",
-    },
   },
   {
-    slug: "sales-forecasting-dashboard",
-    title: "Sales Forecasting Dashboard",
+    slug: "student-wellbeing-success-analysis",
+    title: "Student Wellbeing & Success Analysis",
     summary:
-      "Interactive dashboard forecasting weekly revenue with confidence bands.",
+      "Survey-data study identifying the strongest drivers of exam performance.",
     description:
-      "Time-series forecasting (Prophet + LightGBM) for multi-store retail sales, wrapped in an interactive dashboard with scenario sliders and uncertainty intervals.",
+      "Cleaned and analysed survey data across three datasets in Python, finding study time the strongest driver of exam performance (r = 0.83). Built and compared three classification models and summarised the results in a written report.",
     category: "Analytics",
-    tags: ["Time Series", "Prophet", "LightGBM", "Dashboard"],
+    tags: ["Python", "Data Cleaning", "Correlation", "Classification"],
     year: 2025,
     featured: true,
     metrics: [
-      { label: "MAPE", value: "6.2%" },
-      { label: "Stores", value: "45" },
-      { label: "Horizon", value: "12 wks" },
+      { label: "Top correlation", value: "r = 0.83" },
+      { label: "Datasets", value: "3" },
+      { label: "Models", value: "3" },
     ],
-    links: {
-      demo: "https://example.com",
-      repo: "https://github.com/your-username/sales-forecasting",
-    },
   },
   {
-    slug: "review-sentiment-nlp",
-    title: "Product Review Sentiment",
-    summary:
-      "Fine-tuned transformer classifying 50k product reviews by sentiment.",
+    slug: "nsw-parramatta-data-atlas",
+    title: "NSW–Parramatta Data Atlas",
+    summary: "Geospatial resource-access scoring across Greater Parramatta.",
     description:
-      "Fine-tuned a DistilBERT model on e-commerce reviews, with a clean text-processing pipeline and an attention-based explanation view to show which words drove each prediction.",
-    category: "NLP",
-    tags: ["Transformers", "DistilBERT", "Hugging Face", "Text"],
-    year: 2024,
+      "Cleaned ABS demographic data and 2,086 API-sourced location points to score resource access across 34 regions, presenting spatial and demographic patterns in an interactive browser dashboard with maps and charts.",
+    category: "Data Viz",
+    tags: ["Python", "Geospatial", "REST API", "ABS Data", "Dashboard"],
+    year: 2025,
     featured: true,
     metrics: [
-      { label: "F1", value: "0.94" },
-      { label: "Reviews", value: "50k" },
-      { label: "Classes", value: "3" },
+      { label: "Location points", value: "2,086" },
+      { label: "Regions", value: "34" },
     ],
-    links: {
-      repo: "https://github.com/your-username/review-sentiment",
-    },
-  },
-  {
-    slug: "image-classification-cnn",
-    title: "Image Classification with CNNs",
-    summary: "Transfer-learning classifier reaching 96% on a 10-class dataset.",
-    description:
-      "Built and compared CNN architectures (from scratch vs. transfer learning with ResNet-50) including data augmentation, learning-rate scheduling, and Grad-CAM visualizations.",
-    category: "Deep Learning",
-    tags: ["PyTorch", "ResNet", "Transfer Learning", "Grad-CAM"],
-    year: 2024,
-    metrics: [
-      { label: "Accuracy", value: "96%" },
-      { label: "Params", value: "23M" },
-    ],
-    links: {
-      repo: "https://github.com/your-username/cnn-image-classifier",
-    },
-  },
-  {
-    slug: "covid-data-exploration",
-    title: "COVID-19 Data Exploration",
-    summary: "Open-data analysis tracking waves, mobility, and policy effects.",
-    description:
-      "Exploratory analysis combining case data with mobility and policy datasets, producing a set of annotated, reproducible visualizations and a short written narrative of the findings.",
-    category: "Data Viz",
-    tags: ["Pandas", "Plotly", "EDA", "Storytelling"],
-    year: 2023,
-    metrics: [
-      { label: "Datasets", value: "4" },
-      { label: "Charts", value: "20+" },
-    ],
-    links: {
-      report: "https://github.com/your-username/covid-eda",
-      repo: "https://github.com/your-username/covid-eda",
-    },
-  },
-  {
-    slug: "movie-recommender",
-    title: "Movie Recommendation System",
-    summary: "Hybrid recommender blending collaborative & content signals.",
-    description:
-      "A hybrid recommender on the MovieLens dataset combining matrix factorization with content-based features, evaluated with ranking metrics and a small Streamlit demo.",
-    category: "Machine Learning",
-    tags: ["Recommenders", "Matrix Factorization", "Streamlit"],
-    year: 2023,
-    metrics: [
-      { label: "NDCG@10", value: "0.41" },
-      { label: "Users", value: "6k" },
-    ],
-    links: {
-      demo: "https://example.com",
-      repo: "https://github.com/your-username/movie-recommender",
-    },
   },
 ];
 
 export const projectCategories: ("All" | ProjectCategory)[] = [
   "All",
   "Machine Learning",
-  "Deep Learning",
-  "NLP",
-  "Data Viz",
   "Analytics",
+  "Data Viz",
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -411,9 +341,9 @@ export const projectCategories: ("All" | ProjectCategory)[] = [
 /* -------------------------------------------------------------------------- */
 
 export const contact = {
-  heading: "Let's build something with data",
+  heading: "Let's turn data into decisions",
   blurb:
-    "I'm currently looking for data science internships and new-grad opportunities. Whether you have a role, a dataset, or just want to chat about ML — my inbox is open.",
+    "I'm currently looking for data & analytics internships. Whether you have a role, a dataset, or just want to chat about analytics — my inbox is open.",
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -421,10 +351,10 @@ export const contact = {
 /* -------------------------------------------------------------------------- */
 
 export const site = {
-  name: `${profile.name} — ${profile.role}`,
+  name: "Tony Nguyen — Business Analytics & Data Science Student",
   shortName: profile.name,
   description: profile.summary,
-  // TODO: set to your real deployed URL (used for SEO / Open Graph)
+  // TODO: update to the real deployed URL after the first Vercel deploy.
   url: "https://ds-portfolio.vercel.app",
   locale: "en_US",
 } as const;
