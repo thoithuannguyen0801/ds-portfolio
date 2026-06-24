@@ -60,6 +60,12 @@ export interface Project {
     repo?: string;
     report?: string;
   };
+  /** Extra outcome bullets shown on the project detail page. */
+  highlights?: string[];
+  /** Extra paragraphs for the detail page (falls back to `description`). */
+  details?: string[];
+  /** Optional cover image under /public, used for the detail hero + OG image. */
+  cover?: string;
 }
 
 export interface TimelineItem {
@@ -110,9 +116,17 @@ export const nav: { label: string; href: string }[] = [
   { label: "Contact", href: "/contact" },
 ];
 
-// Only REAL links are live. Phone number from the CV is intentionally kept off
-// the public site.
+// Your GitHub username. This single constant drives the GitHub social link
+// below AND every project's repo link.
+export const GITHUB_USERNAME = "thoithuannguyen0801";
+
 export const socials: SocialLink[] = [
+  {
+    label: "GitHub",
+    href: `https://github.com/${GITHUB_USERNAME}`,
+    icon: "github",
+    handle: `@${GITHUB_USERNAME}`,
+  },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/thoi-thuan-nguyen-539307319/",
@@ -125,20 +139,14 @@ export const socials: SocialLink[] = [
     icon: "mail",
     handle: profile.email,
   },
-  // TODO: Tony doesn't have public GitHub/Kaggle yet. Uncomment + add real URLs
-  // when available (icons already supported by <SocialIcon />):
-  // {
-  //   label: "GitHub",
-  //   href: "https://github.com/<username>",
-  //   icon: "github",
-  //   handle: "@<username>",
-  // },
+  // Optional extras — uncomment and add real URLs when available:
   // {
   //   label: "Kaggle",
   //   href: "https://kaggle.com/<username>",
   //   icon: "kaggle",
   //   handle: "@<username>",
   // },
+  // { label: "Website", href: "https://<your-site>", icon: "globe", handle: "<your-site>" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -294,6 +302,20 @@ export const projects: Project[] = [
       { label: "Segments", value: "3" },
       { label: "Strategies", value: "3" },
     ],
+    links: {
+      repo: `https://github.com/${GITHUB_USERNAME}/credit-card-segmentation`,
+      // demo: "https://...",   // optional live demo
+      // report: "https://...", // optional notebook / write-up
+    },
+    highlights: [
+      "Engineered behavioural features from raw spend & credit data for 8,950 cardholders.",
+      "Reduced dimensionality with PCA, then chose k for K-Means via the elbow & silhouette methods.",
+      "Profiled 3 segments (high-value, at-risk, low-engagement) into concrete retention plays.",
+    ],
+    details: [
+      "The goal was to move from raw transactional data to decisions a marketing team could act on. After cleaning and scaling the features, I reduced dimensionality with PCA and clustered customers with K-Means.",
+      "I then profiled each cluster to translate the math into plain-language personas and concrete retention strategies, which I presented to mentors.",
+    ],
   },
   {
     slug: "student-wellbeing-success-analysis",
@@ -311,6 +333,19 @@ export const projects: Project[] = [
       { label: "Datasets", value: "3" },
       { label: "Models", value: "3" },
     ],
+    links: {
+      repo: `https://github.com/${GITHUB_USERNAME}/student-wellbeing-analysis`,
+      // report: "https://...", // optional written report
+    },
+    highlights: [
+      "Merged and cleaned three survey datasets into a single analysis-ready table.",
+      "Found study time the strongest correlate of exam performance (r = 0.83).",
+      "Compared 3 classification models and reported the trade-offs in a written summary.",
+    ],
+    details: [
+      "This project explored which habits and circumstances most influence student outcomes. I focused on careful data cleaning and honest correlation analysis before modelling.",
+      "I then compared several classifiers to predict performance bands and summarised the findings and caveats in a short report.",
+    ],
   },
   {
     slug: "nsw-parramatta-data-atlas",
@@ -325,6 +360,19 @@ export const projects: Project[] = [
     metrics: [
       { label: "Location points", value: "2,086" },
       { label: "Regions", value: "34" },
+    ],
+    links: {
+      repo: `https://github.com/${GITHUB_USERNAME}/parramatta-data-atlas`,
+      // demo: "https://...", // optional interactive dashboard
+    },
+    highlights: [
+      "Pulled 2,086 location points via a REST API and joined them with ABS demographic data.",
+      "Scored resource access across 34 Greater Parramatta regions.",
+      "Shipped an interactive browser dashboard with maps and charts.",
+    ],
+    details: [
+      "Built for DATA2001, this project combined geospatial and demographic data to measure how well-served different regions are.",
+      "I cleaned ABS data, enriched it with API-sourced points of interest, computed an access score per region, and presented the spatial patterns in an interactive dashboard.",
     ],
   },
 ];

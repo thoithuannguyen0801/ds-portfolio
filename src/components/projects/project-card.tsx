@@ -1,4 +1,5 @@
-import { ExternalLink, FileText } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, ExternalLink, FileText } from "lucide-react";
 import type { Project } from "@/lib/content";
 import { Badge } from "@/components/ui/badge";
 import { SocialIcon } from "@/components/site/social-icons";
@@ -14,10 +15,6 @@ export function ProjectCard({
   project: Project;
   className?: string;
 }) {
-  const hasLinks = Boolean(
-    project.links?.demo || project.links?.repo || project.links?.report,
-  );
-
   return (
     <article
       className={cn(
@@ -33,7 +30,12 @@ export function ProjectCard({
       </div>
 
       <h3 className="mt-4 text-lg font-semibold tracking-tight">
-        {project.title}
+        <Link
+          href={`/projects/${project.slug}`}
+          className="transition-colors after:absolute after:inset-0 hover:text-primary"
+        >
+          {project.title}
+        </Link>
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
         {project.summary}
@@ -68,43 +70,48 @@ export function ProjectCard({
         ))}
       </div>
 
-      {hasLinks && (
-        <div className="mt-5 flex items-center gap-4 border-t border-border pt-4">
-          {project.links?.demo && (
-            <a
-              href={project.links.demo}
-              target="_blank"
-              rel="noreferrer"
-              className={linkClass}
-            >
-              <ExternalLink className="h-4 w-4" />
-              Demo
-            </a>
-          )}
-          {project.links?.repo && (
-            <a
-              href={project.links.repo}
-              target="_blank"
-              rel="noreferrer"
-              className={linkClass}
-            >
-              <SocialIcon name="github" className="h-4 w-4" />
-              Code
-            </a>
-          )}
-          {project.links?.report && (
-            <a
-              href={project.links.report}
-              target="_blank"
-              rel="noreferrer"
-              className={linkClass}
-            >
-              <FileText className="h-4 w-4" />
-              Report
-            </a>
-          )}
-        </div>
-      )}
+      <div className="relative z-10 mt-5 flex flex-wrap items-center gap-4 border-t border-border pt-4">
+        <Link
+          href={`/projects/${project.slug}`}
+          className={cn(linkClass, "font-semibold text-foreground")}
+        >
+          View details
+          <ArrowUpRight className="h-4 w-4" />
+        </Link>
+        {project.links?.demo && (
+          <a
+            href={project.links.demo}
+            target="_blank"
+            rel="noreferrer"
+            className={linkClass}
+          >
+            <ExternalLink className="h-4 w-4" />
+            Demo
+          </a>
+        )}
+        {project.links?.repo && (
+          <a
+            href={project.links.repo}
+            target="_blank"
+            rel="noreferrer"
+            className={linkClass}
+          >
+            <SocialIcon name="github" className="h-4 w-4" />
+            Code
+          </a>
+        )}
+        {project.links?.report && (
+          <a
+            href={project.links.report}
+            target="_blank"
+            rel="noreferrer"
+            className={linkClass}
+          >
+            <FileText className="h-4 w-4" />
+            Report
+          </a>
+        )}
+      </div>
     </article>
   );
 }
