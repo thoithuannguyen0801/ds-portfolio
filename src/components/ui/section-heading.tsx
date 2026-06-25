@@ -22,17 +22,18 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <div
+        <p
           className={cn(
-            "mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary",
-            align === "center" && "justify-center",
+            "font-label mb-3 text-muted-foreground",
+            align === "center" && "text-center",
           )}
         >
-          <span className="h-px w-6 bg-gradient-to-r from-transparent to-primary" />
           {eyebrow}
-        </div>
+        </p>
       )}
-      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+      <h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+        {title}
+      </h2>
       {description && (
         <p
           className={cn(

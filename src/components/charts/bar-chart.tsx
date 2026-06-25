@@ -22,7 +22,7 @@ export function BarChart({ data, className, unit = "" }: Props) {
               {unit}
             </span>
             <div
-              className="w-full rounded-t-md bg-gradient-to-t from-primary/30 to-primary transition-all duration-300 group-hover:from-primary/50 group-hover:to-accent-2"
+              className="w-full bg-primary transition-all duration-300 group-hover:opacity-80"
               style={{ height: `${(d.value / max) * 100}%` }}
             />
           </div>

@@ -29,13 +29,13 @@ export function CopyEmail({
       onClick={copy}
       aria-label="Copy email address"
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-5 text-sm font-medium transition-colors hover:border-primary/40 hover:text-primary",
+        "inline-flex items-center justify-center gap-2 rounded-md border border-border bg-card px-5 text-sm font-medium transition-colors hover:border-foreground hover:text-foreground",
         className,
       )}
     >
       {copied ? (
         <>
-          <Check className="h-4 w-4 text-primary" />
+          <Check className="h-4 w-4" />
           Copied!
         </>
       ) : (

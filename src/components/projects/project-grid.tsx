@@ -32,10 +32,10 @@ export function ProjectGrid() {
               type="button"
               onClick={() => setActive(cat)}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                "inline-flex items-center gap-1.5 rounded-md border px-4 py-2 text-sm font-medium transition-colors",
                 isActive
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground",
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border text-muted-foreground hover:border-foreground hover:text-foreground",
               )}
             >
               {cat}

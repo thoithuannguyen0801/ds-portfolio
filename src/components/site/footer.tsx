@@ -18,8 +18,8 @@ export function Footer() {
       <Container className="py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <Link href="/" className="flex items-center gap-2.5 font-semibold">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-sm font-bold text-primary-foreground">
+            <Link href="/" className="flex items-center gap-2.5 font-display">
+              <span className="font-label grid h-9 w-9 place-items-center border border-border bg-card">
                 {initials}
               </span>
               {profile.name}
@@ -30,7 +30,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold">Navigation</h3>
+            <h3 className="font-label text-muted-foreground">Navigation</h3>
             <ul className="mt-4 space-y-2.5">
               {nav.map((item) => (
                 <li key={item.href}>
@@ -46,8 +46,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold">Connect</h3>
-            <div className="mt-4 flex flex-wrap gap-2.5">
+            <h3 className="font-label text-muted-foreground">Connect</h3>
+            <div className="mt-4 flex flex-wrap gap-2">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -55,7 +55,7 @@ export function Footer() {
                   target={s.icon === "mail" ? undefined : "_blank"}
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="inline-grid h-10 w-10 place-items-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                  className="inline-grid h-10 w-10 place-items-center rounded-md border border-border bg-card text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                 >
                   <SocialIcon name={s.icon} className="h-[1.15rem] w-[1.15rem]" />
                 </a>

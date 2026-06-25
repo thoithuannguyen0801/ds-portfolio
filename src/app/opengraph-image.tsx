@@ -23,10 +23,9 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background:
-            "linear-gradient(135deg, #060a13 0%, #0c1322 55%, #04211d 100%)",
-          color: "#e7eefb",
-          fontFamily: "sans-serif",
+          background: "#F3F0EA",
+          color: "#131210",
+          fontFamily: "Georgia, serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
@@ -37,28 +36,51 @@ export default function OpengraphImage() {
               justifyContent: "center",
               width: "72px",
               height: "72px",
-              borderRadius: "18px",
-              background: "#2dd4bf",
-              color: "#04211d",
-              fontSize: "30px",
-              fontWeight: 700,
+              border: "2px solid #D8D4CC",
+              background: "#FFFFFF",
+              fontSize: "24px",
+              fontWeight: 500,
+              letterSpacing: "0.06em",
             }}
           >
             {initials}
           </div>
-          <div style={{ fontSize: "28px", color: "#93a4bd" }}>
+          <div
+            style={{
+              fontSize: "22px",
+              color: "#716E68",
+              fontFamily: "monospace",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+            }}
+          >
             {profile.location}
           </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-          <div style={{ fontSize: "38px", fontWeight: 600, color: "#2dd4bf" }}>
+          <div
+            style={{
+              fontSize: "32px",
+              fontWeight: 500,
+              color: "#716E68",
+              fontFamily: "system-ui, sans-serif",
+            }}
+          >
             {profile.role}
           </div>
-          <div style={{ fontSize: "88px", fontWeight: 800, lineHeight: 1.05 }}>
+          <div style={{ fontSize: "80px", fontWeight: 500, lineHeight: 1.05 }}>
             {profile.name}
           </div>
-          <div style={{ fontSize: "34px", color: "#93a4bd", maxWidth: "900px" }}>
+          <div
+            style={{
+              fontSize: "30px",
+              color: "#716E68",
+              maxWidth: "900px",
+              fontFamily: "system-ui, sans-serif",
+              lineHeight: 1.5,
+            }}
+          >
             {profile.tagline}
           </div>
         </div>
@@ -68,17 +90,18 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             gap: "14px",
-            fontSize: "26px",
-            color: "#93a4bd",
+            fontSize: "22px",
+            color: "#716E68",
+            fontFamily: "monospace",
+            letterSpacing: "0.06em",
           }}
         >
           <div
             style={{
               display: "flex",
-              width: "14px",
-              height: "14px",
-              borderRadius: "999px",
-              background: "#2dd4bf",
+              width: "12px",
+              height: "12px",
+              background: "#E6552F",
             }}
           />
           {site.url.replace(/^https?:\/\//, "")}

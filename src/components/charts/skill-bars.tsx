@@ -36,9 +36,9 @@ export function SkillBars({ skills }: { skills: Skill[] }) {
             <span className="font-medium">{s.name}</span>
             <span className="text-muted-foreground">{s.level}%</span>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-muted">
+          <div className="h-2 overflow-hidden bg-muted">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-primary to-accent-2 transition-[width] duration-1000 ease-out"
+              className="h-full bg-primary transition-[width] duration-1000 ease-out"
               style={{
                 width: show ? `${s.level}%` : "0%",
                 transitionDelay: `${i * 60}ms`,

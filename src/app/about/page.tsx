@@ -50,8 +50,8 @@ function Timeline({ items }: { items: TimelineItem[] }) {
     <ol className="relative space-y-8 border-l border-border pl-8">
       {items.map((item) => (
         <li key={`${item.title}-${item.period}`} className="relative">
-          <span className="absolute -left-[2.35rem] top-1 grid h-5 w-5 place-items-center rounded-full border border-border bg-card">
-            <span className="h-2 w-2 rounded-full bg-primary" />
+          <span className="absolute -left-[2.35rem] top-1 grid h-5 w-5 place-items-center border border-border bg-card">
+            <span className="h-2 w-2 bg-foreground" />
           </span>
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-base font-semibold">{item.title}</h3>
@@ -68,7 +68,7 @@ function Timeline({ items }: { items: TimelineItem[] }) {
             <ul className="mt-3 space-y-1.5">
               {item.highlights.map((h) => (
                 <li key={h} className="flex items-start gap-2 text-sm">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-foreground" />
                   <span className="text-muted-foreground">{h}</span>
                 </li>
               ))}
@@ -85,7 +85,6 @@ export default function AboutPage() {
     <>
       {/* Intro */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 glow opacity-50" />
         <Container className="py-16 lg:py-20">
           <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr]">
             <div>
@@ -108,13 +107,13 @@ export default function AboutPage() {
 
             {/* Quick facts */}
             <Reveal delay={150}>
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-lg shadow-black/5">
+              <div className="rounded-lg border border-border bg-card p-6">
                 <div className="flex items-center gap-4">
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-primary text-lg font-bold text-primary-foreground">
+                  <span className="font-label grid h-14 w-14 place-items-center border border-border bg-muted">
                     {initials}
                   </span>
                   <div>
-                    <p className="font-semibold">{profile.name}</p>
+                    <p className="font-display">{profile.name}</p>
                     <p className="text-sm text-muted-foreground">
                       {profile.role}
                     </p>
@@ -123,28 +122,28 @@ export default function AboutPage() {
 
                 <dl className="mt-6 space-y-4 text-sm">
                   <div className="flex items-center gap-3">
-                    <MapPin className="h-4 w-4 text-primary" />
+                    <MapPin className="h-4 w-4 text-muted-foreground" />
                     <span className="text-muted-foreground">
                       {profile.location}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Mail className="h-4 w-4 text-primary" />
+                    <Mail className="h-4 w-4 text-muted-foreground" />
                     <a
                       href={`mailto:${profile.email}`}
-                      className="text-muted-foreground transition-colors hover:text-primary"
+                      className="text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {profile.email}
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
-                    <GraduationCap className="h-4 w-4 text-primary" />
+                    <GraduationCap className="h-4 w-4 text-muted-foreground" />
                     <span className="text-muted-foreground">
                       {education[0]?.title}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Sparkles className="h-4 w-4 text-primary" />
+                    <Sparkles className="h-4 w-4 text-muted-foreground" />
                     <span className="text-muted-foreground">
                       {profile.availability}
                     </span>
@@ -159,7 +158,7 @@ export default function AboutPage() {
                       target={s.icon === "mail" ? undefined : "_blank"}
                       rel="noreferrer"
                       aria-label={s.label}
-                      className="inline-grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                      className="inline-grid h-9 w-9 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                     >
                       <SocialIcon name={s.icon} className="h-4 w-4" />
                     </a>
@@ -185,8 +184,8 @@ export default function AboutPage() {
 
           <div className="mt-14 grid gap-6 lg:grid-cols-2">
             <Reveal>
-              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
-                <h3 className="text-base font-semibold">Core strengths</h3>
+              <div className="flex h-full flex-col rounded-lg border border-border bg-card p-6">
+                <h3 className="font-display text-lg">Core strengths</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Self-assessed across the data science lifecycle.
                 </p>
@@ -197,8 +196,8 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
-                <h3 className="text-base font-semibold">Monthly activity</h3>
+              <div className="flex h-full flex-col rounded-lg border border-border bg-card p-6">
+                <h3 className="font-display text-lg">Monthly activity</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Illustrative sample — not real tracked data.
                 </p>
@@ -214,8 +213,8 @@ export default function AboutPage() {
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             {skillGroups.map((group, i) => (
               <Reveal key={group} delay={i * 80}>
-                <div className="rounded-2xl border border-border bg-card p-6">
-                  <h3 className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-primary">
+                <div className="rounded-lg border border-border bg-card p-6">
+                  <h3 className="font-label mb-5 text-muted-foreground">
                     {group}
                   </h3>
                   <SkillBars
@@ -233,8 +232,8 @@ export default function AboutPage() {
         <Container className="grid gap-14 lg:grid-cols-2">
           <div>
             <Reveal>
-              <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold tracking-tight">
-                <GraduationCap className="h-6 w-6 text-primary" />
+              <h2 className="font-display mb-8 flex items-center gap-3 text-2xl tracking-tight">
+                <GraduationCap className="h-6 w-6 text-muted-foreground" />
                 Education
               </h2>
             </Reveal>
@@ -244,8 +243,8 @@ export default function AboutPage() {
           </div>
           <div>
             <Reveal>
-              <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold tracking-tight">
-                <Briefcase className="h-6 w-6 text-primary" />
+              <h2 className="font-display mb-8 flex items-center gap-3 text-2xl tracking-tight">
+                <Briefcase className="h-6 w-6 text-muted-foreground" />
                 Experience
               </h2>
             </Reveal>

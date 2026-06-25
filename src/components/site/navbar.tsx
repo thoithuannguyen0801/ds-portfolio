@@ -34,18 +34,18 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-colors duration-300",
+        "sticky top-0 z-50 border-b transition-colors duration-200",
         scrolled || open
-          ? "border-b border-border bg-background/80 backdrop-blur-xl"
-          : "border-b border-transparent",
+          ? "border-border bg-background/95 backdrop-blur-sm"
+          : "border-transparent bg-background",
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5 font-semibold">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-sm font-bold text-primary-foreground shadow-lg shadow-primary/25">
+        <Link href="/" className="flex items-center gap-2.5 font-display text-[15px]">
+          <span className="font-label grid h-9 w-9 place-items-center border border-border bg-card text-foreground">
             {initials}
           </span>
-          <span className="hidden text-[15px] sm:block">{profile.name}</span>
+          <span className="hidden sm:block">{profile.name}</span>
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -54,7 +54,7 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "relative rounded-full px-4 py-2 text-sm transition-colors",
+                "rounded-md px-4 py-2 text-sm transition-colors",
                 isActive(item.href)
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground",
@@ -62,7 +62,7 @@ export function Navbar() {
             >
               {item.label}
               {isActive(item.href) && (
-                <span className="absolute inset-x-3 -bottom-px h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+                <span className="mt-1 block h-0.5 w-full bg-primary" />
               )}
             </Link>
           ))}
@@ -86,7 +86,7 @@ export function Navbar() {
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle navigation menu"
             aria-expanded={open}
-            className="inline-grid h-10 w-10 place-items-center rounded-full border border-border bg-card text-foreground md:hidden"
+            className="inline-grid h-10 w-10 place-items-center rounded-md border border-border bg-card text-foreground md:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -94,7 +94,7 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden">
+        <div className="border-t border-border bg-background md:hidden">
           <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
             {nav.map((item) => (
               <Link
@@ -102,7 +102,7 @@ export function Navbar() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  "rounded-xl px-4 py-3 text-sm font-medium transition-colors",
+                  "rounded-md px-4 py-3 text-sm font-medium transition-colors",
                   isActive(item.href)
                     ? "bg-muted text-foreground"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground",

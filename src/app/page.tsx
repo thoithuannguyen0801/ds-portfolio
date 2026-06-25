@@ -7,7 +7,6 @@ import {
   Database,
   Download,
   MapPin,
-  Sparkles,
 } from "lucide-react";
 import {
   activity,
@@ -39,22 +38,16 @@ export default function HomePage() {
     <>
       {/* ---------------- Hero ---------------- */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-grid" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px] glow opacity-60" />
-
         <Container className="grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
           <div>
             <Reveal>
-              <Badge className="border-primary/30 bg-primary/10 text-primary">
-                <Sparkles className="h-3.5 w-3.5" />
-                {profile.availability}
-              </Badge>
+              <Badge>{profile.availability}</Badge>
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="font-display mt-5 text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.5rem]">
                 Hi, I&apos;m {profile.firstName}.
-                <span className="mt-2 block text-gradient">{profile.role}</span>
+                <span className="mt-2 block">{profile.role}</span>
               </h1>
             </Reveal>
 
@@ -102,7 +95,7 @@ export default function HomePage() {
                       target={s.icon === "mail" ? undefined : "_blank"}
                       rel="noreferrer"
                       aria-label={s.label}
-                      className="inline-grid h-9 w-9 place-items-center rounded-full border border-border bg-card transition-colors hover:border-primary/40 hover:text-primary"
+                      className="inline-grid h-9 w-9 place-items-center rounded-md border border-border bg-card transition-colors hover:border-foreground hover:text-foreground"
                     >
                       <SocialIcon name={s.icon} className="h-4 w-4" />
                     </a>
@@ -115,12 +108,9 @@ export default function HomePage() {
           {/* Hero visual */}
           <Reveal delay={200}>
             <div className="space-y-4">
-              <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/10">
+              <div className="overflow-hidden rounded-lg border border-border bg-card">
                 <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-                  <span className="h-3 w-3 rounded-full bg-red-400/80" />
-                  <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
-                  <span className="h-3 w-3 rounded-full bg-green-400/80" />
-                  <span className="ml-2 font-mono text-xs text-muted-foreground">
+                  <span className="font-label text-muted-foreground">
                     churn_model.py
                   </span>
                 </div>
@@ -134,33 +124,33 @@ export default function HomePage() {
                     <span className="text-accent">from</span>{" "}
                     <span className="text-foreground">xgboost</span>{" "}
                     <span className="text-accent">import</span>{" "}
-                    <span className="text-primary">XGBClassifier</span>
+                    <span className="text-foreground">XGBClassifier</span>
                     {"\n\n"}
                     <span className="text-muted-foreground">
                       # train a model that flags churn early
                     </span>
                     {"\n"}
                     <span className="text-foreground">model</span> ={" "}
-                    <span className="text-primary">XGBClassifier</span>(
+                    <span className="text-foreground">XGBClassifier</span>(
                     {"\n"}
                     {"    "}n_estimators=
-                    <span className="text-accent-2">400</span>,
+                    <span className="text-foreground">400</span>,
                     {"\n"}
-                    {"    "}max_depth=<span className="text-accent-2">5</span>,
+                    {"    "}max_depth=<span className="text-foreground">5</span>,
                     {"\n"}
                     )
                     {"\n"}
                     <span className="text-foreground">model</span>.
-                    <span className="text-primary">fit</span>(X_train, y_train)
+                    <span className="text-accent">fit</span>(X_train, y_train)
                     {"\n"}
                     <span className="text-foreground">auc</span> ={" "}
-                    <span className="text-accent-2">0.91</span>{" "}
-                    <span className="text-muted-foreground"># ✅ ship it</span>
+                    <span className="text-foreground">0.91</span>{" "}
+                    <span className="text-muted-foreground"># ship it</span>
                   </code>
                 </pre>
               </div>
 
-              <div className="rounded-2xl border border-border bg-card p-5 shadow-lg shadow-black/5">
+              <div className="rounded-lg border border-border bg-card p-5">
                 <div className="mb-4 flex items-center justify-between">
                   <p className="text-sm font-medium">Monthly activity</p>
                   <span className="text-xs text-muted-foreground">
@@ -181,7 +171,7 @@ export default function HomePage() {
         <Container className="grid grid-cols-2 gap-px overflow-hidden lg:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="px-2 py-8 text-center">
-              <div className="text-3xl font-bold text-gradient sm:text-4xl">
+              <div className="font-display text-3xl sm:text-4xl">
                 {s.value}
               </div>
               <div className="mt-1 text-sm text-muted-foreground">{s.label}</div>
@@ -207,11 +197,11 @@ export default function HomePage() {
               const Icon = highlightIcons[h.icon as keyof typeof highlightIcons];
               return (
                 <Reveal key={h.title} delay={i * 100}>
-                  <div className="group h-full rounded-2xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
-                    <div className="inline-grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <div className="group h-full rounded-lg border border-border bg-card p-7 transition-colors hover:border-foreground/30">
+                    <div className="inline-grid h-12 w-12 place-items-center border border-border bg-muted text-foreground">
                       {Icon && <Icon className="h-6 w-6" />}
                     </div>
-                    <h3 className="mt-5 text-lg font-semibold">{h.title}</h3>
+                    <h3 className="font-display mt-5 text-xl">{h.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {h.description}
                     </p>
@@ -235,7 +225,7 @@ export default function HomePage() {
               />
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent"
               >
                 All projects
                 <ArrowUpRight className="h-4 w-4" />
@@ -256,10 +246,8 @@ export default function HomePage() {
       {/* ---------------- CTA ---------------- */}
       <section className="pb-24">
         <Container>
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-16 text-center shadow-xl">
-            <div className="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-50" />
-            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 glow" />
-            <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+          <div className="rounded-lg border border-border bg-card px-6 py-16 text-center">
+            <h2 className="font-display mx-auto max-w-2xl text-3xl tracking-tight sm:text-4xl">
               Looking for a data science intern or new grad?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">

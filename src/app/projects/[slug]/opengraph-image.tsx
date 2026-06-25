@@ -30,33 +30,29 @@ export default async function OpengraphImage({
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background:
-            "linear-gradient(135deg, #060a13 0%, #0c1322 55%, #04211d 100%)",
-          color: "#e7eefb",
-          fontFamily: "sans-serif",
+          background: "#F3F0EA",
+          color: "#131210",
+          fontFamily: "Georgia, serif",
         }}
       >
-        <div style={{ display: "flex" }}>
-          <div
-            style={{
-              display: "flex",
-              padding: "10px 24px",
-              borderRadius: "999px",
-              border: "2px solid #2dd4bf",
-              color: "#2dd4bf",
-              fontSize: "28px",
-              fontWeight: 600,
-            }}
-          >
-            {category}
-          </div>
+        <div
+          style={{
+            display: "flex",
+            fontFamily: "monospace",
+            fontSize: "22px",
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            color: "#716E68",
+          }}
+        >
+          {category}
         </div>
 
         <div
           style={{
             display: "flex",
-            fontSize: "76px",
-            fontWeight: 800,
+            fontSize: "68px",
+            fontWeight: 500,
             lineHeight: 1.1,
             maxWidth: "1000px",
           }}
@@ -71,17 +67,30 @@ export default async function OpengraphImage({
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: "flex", fontSize: "30px", color: "#93a4bd" }}>
-            {profile.name} — {profile.role}
+          <div
+            style={{
+              display: "flex",
+              fontSize: "26px",
+              color: "#716E68",
+              fontFamily: "system-ui, sans-serif",
+            }}
+          >
+            {profile.name}
           </div>
           {metric ? (
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <div
-                style={{ fontSize: "52px", fontWeight: 800, color: "#2dd4bf" }}
-              >
+              <div style={{ fontSize: "48px", fontWeight: 500, color: "#E6552F" }}>
                 {metric.value}
               </div>
-              <div style={{ fontSize: "24px", color: "#93a4bd" }}>
+              <div
+                style={{
+                  fontSize: "18px",
+                  color: "#716E68",
+                  fontFamily: "monospace",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+              >
                 {metric.label}
               </div>
             </div>

@@ -2,49 +2,47 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---------- Design tokens (light is the base, .dark overrides) ---------- */
+/* Portfolio Studio — off-white paper, ink text, one orange accent (design.md) */
 :root {
-  --background: #f6f8fc;
-  --foreground: #0b1220;
+  --background: #f3f0ea;
+  --foreground: #131210;
 
   --card: #ffffff;
-  --card-foreground: #0b1220;
+  --card-foreground: #131210;
 
-  --muted: #eef2f8;
-  --muted-foreground: #54657c;
+  --muted: #ebe7df;
+  --muted-foreground: #716e68;
 
-  --border: #e2e8f1;
-  --input: #e2e8f1;
-  --ring: #0d9488;
+  --border: #d8d4cc;
+  --input: #d8d4cc;
+  --ring: #e6552f;
 
-  --primary: #0d9488; /* teal-600 */
+  /* Tertiary accent — reserved for primary actions only */
+  --primary: #e6552f;
   --primary-foreground: #ffffff;
 
-  --accent: #6366f1; /* indigo-500 */
-  --accent-2: #06b6d4; /* cyan-500 */
-
-  --radius: 0.9rem;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius: 4px;
 }
 
 .dark {
-  --background: #060a13;
-  --foreground: #e7eefb;
+  --background: #131210;
+  --foreground: #f3f0ea;
 
-  --card: #0c1322;
-  --card-foreground: #e7eefb;
+  --card: #1c1a17;
+  --card-foreground: #f3f0ea;
 
-  --muted: #111a2c;
-  --muted-foreground: #93a4bd;
+  --muted: #242220;
+  --muted-foreground: #a39e96;
 
-  --border: #1b2740;
-  --input: #1b2740;
-  --ring: #2dd4bf;
+  --border: #3a3732;
+  --input: #3a3732;
+  --ring: #e6552f;
 
-  --primary: #2dd4bf; /* teal-400 */
-  --primary-foreground: #042420;
-
-  --accent: #818cf8; /* indigo-400 */
-  --accent-2: #22d3ee; /* cyan-400 */
+  --primary: #e6552f;
+  --primary-foreground: #ffffff;
 }
 
 @theme inline {
@@ -59,15 +57,16 @@
   --color-ring: var(--ring);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
 
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 0.35rem);
-  --radius-2xl: calc(var(--radius) + 0.75rem);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-lg);
+  --radius-2xl: var(--radius-lg);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 @layer base {
@@ -84,12 +83,22 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
   ::selection {
-    background-color: color-mix(in oklab, var(--primary) 28%, transparent);
+    background-color: color-mix(in oklab, var(--primary) 22%, transparent);
     color: var(--foreground);
   }
 
@@ -98,43 +107,36 @@
     outline-offset: 2px;
   }
 
-  /* Thin, themed scrollbar */
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
   }
 }
 
-/* ---------- Decorative background ---------- */
-.bg-grid {
-  background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
-  background-size: 56px 56px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
+/* Mono uppercase labels (design.md label typography) */
+.font-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.glow {
-  background: radial-gradient(
-    600px circle at var(--x, 50%) var(--y, 0%),
-    color-mix(in oklab, var(--accent) 22%, transparent),
-    transparent 70%
-  );
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
-.text-gradient {
-  background-image: linear-gradient(120deg, var(--primary), var(--accent-2) 55%, var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Accent text — use sparingly (single-accent rule) */
+.text-accent {
+  color: var(--primary);
 }
 
-/* ---------- Reveal-on-scroll animation ---------- */
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -147,7 +149,7 @@
 }
 
 .reveal.is-visible {
-  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {

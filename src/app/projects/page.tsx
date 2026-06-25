@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 glow opacity-50" />
       <Container className="py-16 lg:py-20">
         <Reveal>
           <SectionHeading
