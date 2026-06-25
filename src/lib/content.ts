@@ -402,7 +402,7 @@ export const site = {
   name: "Tony Nguyen — Business Analytics & Data Science Student",
   shortName: profile.name,
   description: profile.summary,
-  // TODO: update to the real deployed URL after the first Vercel deploy.
-  url: "https://ds-portfolio.vercel.app",
+  // Production URL on Vercel (update if you add a custom domain).
+  url: "https://ds-portfolio-eta.vercel.app",
   locale: "en_US",
 } as const;
